@@ -154,7 +154,7 @@ namespace BookingAppHotels.RunApp
                 Helpers.ShowUser(user);
                 int padValue1 = 15;
                 int padValue2 = 20;
-                int padValue3 = 90;
+                int padValue3 = 89;
                 int padValue4 = 98;
                 int count = 1;
                 Console.WriteLine("\nBokningsID".PadRight(padValue1) + "  Namn".PadRight(padValue2) + "  Hotell".PadRight(padValue2) +
