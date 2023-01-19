@@ -748,7 +748,7 @@ namespace BookingAppHotels.RunApp
                         Room? oneRoom = db.Rooms.FirstOrDefault(x => x.Id == roomID);
                         Console.WriteLine("\t    " + oneRoom.Name);
                         Console.WriteLine("\t----------\n\n");
-                        Console.WriteLine("n - Next Week\np - Previous Week\nb - Book Room\na - End Booking\n\n");
+                        Console.WriteLine("\tn - Nästa vecka\n\tp - Förra veckan\n\tb - Boka rum\n\ta - Avsluta\n\n");
                         Console.WriteLine();
 
                         for (int j = 0; j < 7; j++)
@@ -805,8 +805,6 @@ namespace BookingAppHotels.RunApp
                             break;
                         }
                     }
-
-
                 }
             }
         }
@@ -891,8 +889,6 @@ namespace BookingAppHotels.RunApp
             }
             Console.ReadKey();
         }
-
-
 
         internal static void Welcome()
         {
@@ -1032,8 +1028,8 @@ namespace BookingAppHotels.RunApp
                 {
                     var personList = db.Persons;
                     Console.Clear();
-                    Console.WriteLine("   Inloggning:");
-                    Console.WriteLine("   -----------\n");
+                    Console.WriteLine("Inloggning/Skapa användare:");
+                    Console.WriteLine("--------------------------\n");
                     Console.Write("Ange namn: ");
                     string? nameInput = Console.ReadLine();
                     Console.Write("Ange lösenord: ");
@@ -1087,12 +1083,18 @@ namespace BookingAppHotels.RunApp
 
         internal static void RemoveBooking(Person user, Booking booking, int removeProductId)
         {
-            var sql = $"DELETE FROM Bookings WHERE Id={removeProductId}";
-            using (var connection = new SqlConnection(Statistics._connString))
+            using (var db = new HotelContext())
             {
-                connection.Open();
-                connection.Execute(sql);
-                connection.Close();
+                var bookingToDelete = db.Bookings.Where(x => x.Id == removeProductId).SingleOrDefault();
+                if (bookingToDelete != null)
+                {
+                    db.Bookings.Remove((Booking)bookingToDelete);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    Console.WriteLine("\nDet gick inte att ta bort denna bokning!");
+                }
             }
         }
     }

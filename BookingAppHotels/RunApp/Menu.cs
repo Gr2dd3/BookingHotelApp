@@ -154,28 +154,28 @@ namespace BookingAppHotels.RunApp
                 Helpers.ShowUser(user);
                 int padValue1 = 15;
                 int padValue2 = 20;
-
+                int count = 1;
                 Console.WriteLine("\nBokningsID".PadRight(padValue1) + "  Namn".PadRight(padValue2) + "  Hotell".PadRight(padValue2) +
                     " Rum".PadRight(padValue1) + "Incheckning".PadRight(padValue2) + " Pris".PadRight(padValue1));
                 Console.WriteLine("--------------------------------------------------------------------------------------------------");
                 foreach (var b in resultList)
                 {
-                    Console.WriteLine(b.BookingID.ToString().PadRight(padValue1) + b.PersonName.PadRight(padValue2) + b.HotelName.PadRight(padValue2) +
+                    Console.WriteLine(count.ToString().PadRight(padValue1) + b.PersonName.PadRight(padValue2) + b.HotelName.PadRight(padValue2) +
                         b.RoomName.PadRight(padValue1) + b.CheckInDate.ToString("d").PadRight(padValue2) + b.RoomPrice + " SEK".PadRight(padValue1));
+                    count++;
                 }
-
                 int answer = 0;
                 Console.WriteLine("\n\n\n1. Välj bokning att ta bort\n2. Återgå");
                 answer = Helpers.TryNumber(answer, 1, 2);
-
                 switch (answer)
                 {
                     case 1:
                         int removeProductId = 0;
                         Console.Write("\n\nAnge vilken bokning du vill ta bort: ");
-                        removeProductId = Helpers.TryNumber(removeProductId, 1, resultList[resultList.Count - 1].BookingID);
+                        removeProductId = Helpers.TryNumber(removeProductId, 1, count-1);
+                        removeProductId = resultList[removeProductId - 1].BookingID;
                         Helpers.RemoveBooking(user, booking, removeProductId);
-                        Console.WriteLine("Bokning med Id " + removeProductId + " har blivit borttagen!");
+                        Console.WriteLine("Bokning nr " + (count - 1) + " har blivit borttagen!");
                         Thread.Sleep(1500);
                         break;
                     case 2:

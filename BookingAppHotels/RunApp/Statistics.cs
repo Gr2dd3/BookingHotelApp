@@ -37,7 +37,6 @@ namespace BookingAppHotels.RunApp
             }
             return cities;
         }
-
         internal static void MostPopularHotel()
         {
             string sql = " SELECT top 1 \r\n\t\th.Name AS Name, \r\n\t\tcount(b.RoomId) as RoomId\r\nFROM \r\n\tHotels h join Rooms r on h.Id = r.HotelId\r\n\tjoin Bookings b on r.Id = b.RoomId\r\ngroup by \r\n\t\th.Name\r\norder by \r\n\t\tRoomId Desc";
@@ -61,6 +60,7 @@ namespace BookingAppHotels.RunApp
 
         }
 
+        // Now back to LINQ and normal
         internal static void MoneyForAllHotels()
         {
             using (var db = new HotelContext())
