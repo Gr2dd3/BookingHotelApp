@@ -912,7 +912,7 @@ namespace BookingAppHotels.RunApp
 
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine(welcome);
-            Thread.Sleep(2000);
+            Thread.Sleep(3000);
             Console.ResetColor();
             Console.Clear();
         }

@@ -154,6 +154,8 @@ namespace BookingAppHotels.RunApp
                 Helpers.ShowUser(user);
                 int padValue1 = 15;
                 int padValue2 = 20;
+                int padValue3 = 90;
+                int padValue4 = 98;
                 int count = 1;
                 Console.WriteLine("\nBokningsID".PadRight(padValue1) + "  Namn".PadRight(padValue2) + "  Hotell".PadRight(padValue2) +
                     " Rum".PadRight(padValue1) + "Incheckning".PadRight(padValue2) + " Pris".PadRight(padValue1));
@@ -165,6 +167,11 @@ namespace BookingAppHotels.RunApp
                     count++;
                 }
                 int answer = 0;
+                var totalPrice = resultList.Sum(x => x.RoomPrice);
+
+                Console.WriteLine("\n");
+                Console.WriteLine("Totalt pris: ".PadLeft(padValue3) + totalPrice + " SEK"); 
+                Console.WriteLine("---------------------".PadLeft(padValue4));
                 Console.WriteLine("\n\n\n1. Välj bokning att ta bort\n2. Återgå");
                 answer = Helpers.TryNumber(answer, 1, 2);
                 switch (answer)
