@@ -28,7 +28,7 @@ namespace BookingAppHotels.RunApp
                 foreach (var country in countryList)
                 {
                     count++;
-                    Console.WriteLine(count + ". " + country);
+                    Console.WriteLine(count + ". " + country.Name);
                 }
                 Console.WriteLine("-------------------");
 
@@ -404,7 +404,7 @@ namespace BookingAppHotels.RunApp
                         };
                         hotelsList.Add(newHotel);
                         db.SaveChanges();
-
+                        // Adds Rooms to Hotel in background with different qualities
                         var nrOfRoomsInNewHotel = (newHotel.NrOfRoomsPerFloor * newHotel.NrOfFloors);
                         int roomNamecount = 1;
                         int makeBoolTrueCount = 0;
@@ -644,7 +644,6 @@ namespace BookingAppHotels.RunApp
                 oneRoom.Price = price;
                 db.SaveChanges();
                 Console.WriteLine("Priset för rum " + oneRoom.Name + " har blivit " + oneRoom.Price + "!");
-                Console.ReadKey();
             }
         }
 
@@ -737,6 +736,7 @@ namespace BookingAppHotels.RunApp
                 Person? personInRoomBooking = null;
                 List<Booking>? roomBooking = new();
 
+                // DateTime calender
                 while (keepSelecting)
                 {
                     for (date = startDate; date <= endDate; date = date.AddDays(1))
