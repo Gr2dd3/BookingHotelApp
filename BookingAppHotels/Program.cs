@@ -24,7 +24,7 @@ public class Program
             }
             if (user != null)
             {
-                Helpers.ShowUser(user);
+                View.ShowUser(user);
                 if (user.Name == "admin")
                 {
                     // Admin start page
